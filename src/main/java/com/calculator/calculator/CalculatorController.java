@@ -9,27 +9,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/calculator")
 public class CalculatorController {
 
+    private final CalculatorService calculator;
+
+    public CalculatorController(CalculatorService calculator) {
+        this.calculator = calculator;
+    }
+
     @GetMapping("/")
     public String greating() {
         return "Добро пожаловать в калькулятор!";
     }
     @GetMapping("/plus")
-    public String plus(@RequestParam int num1, @RequestParam int num2) {
-        return num1 + " + " + num2 + " = " + (num1 + num2);
+    public String plus(@RequestParam(name = "num1") int a, @RequestParam(name = "num2") int b) {
+        return a + " + " + b + " = " + calculator.plus(a, b);
     }
     @GetMapping("/minus")
-    public String minus(@RequestParam int num1, @RequestParam int num2) {
-        return num1 + " - " + num2 + " = " + (num1 - num2);
+    public String minus(@RequestParam(name = "num1") int a, @RequestParam(name = "num2") int b) {
+        return a + " - " + b + " = " + calculator.minus(a, b);
     }
     @GetMapping("/multiply")
-    public String multiply(@RequestParam int num1, @RequestParam int num2) {
-        return num1 + " * " + num2 + " = " + (num1 * num2);
+    public String multiply(@RequestParam(name = "num1") int a, @RequestParam(name = "num2") int b) {
+        return a + " * " + b + " = " + calculator.multiply(a, b);
     }
     @GetMapping("/divide")
-    public String divide(@RequestParam int num1, @RequestParam int num2) {
-        if (num2==0){
+    public String divide(@RequestParam(name = "num1") int a, @RequestParam(name = "num2") int b) {
+        if (b==0){
            return  "Делить на ноль нельзя";
         }
-        return num1 + " / " + num2 + " = " + (num1 / (double) num2);
+        return a + " / " + b + " = " + calculator.divide(a, b);
     }
 }
