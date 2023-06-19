@@ -1,9 +1,10 @@
-package com.calculator.calculator;
+package com.calculator.calculator.service.impl;
 
+import com.calculator.calculator.service.CalculatorService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CalculatorServiceImpl implements CalculatorService{
+public class CalculatorServiceImpl implements CalculatorService {
     @Override
     public int plus (int a, int b) {
         return a + b;

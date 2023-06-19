@@ -1,4 +1,4 @@
-package com.calculator.calculator;
+package com.calculator.calculator.service;
 
 public interface CalculatorService {
     int plus (int a, int b);
